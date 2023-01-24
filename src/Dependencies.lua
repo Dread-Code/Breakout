@@ -23,4 +23,5 @@ require 'src/StateMachine'
 -- its own update and render methods that can be called by our state machine
 -- each frame, to avoid bulky code in main.lua
 require 'src/states/BaseState'
+require 'src/states/PlayState'
 require 'src/states/StartState'
