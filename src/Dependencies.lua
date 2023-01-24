@@ -15,9 +15,13 @@ Class = require 'lib/class'
 -- a few global constants, centralized
 require 'src/constants'
 
+require 'src/Paddle'
+
 -- a basic StateMachine class which will allow us to transition to and from
 -- game states smoothly and avoid monolithic code in one file
 require 'src/StateMachine'
+
+
 require 'src/Util'
 
 -- each of the individual states our game can be in at once; each state has
