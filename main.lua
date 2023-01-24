@@ -58,6 +58,14 @@ function love.load()
         ['hearts'] = love.graphics.newImage('graphics/hearts.png'),
         ['particle'] = love.graphics.newImage('graphics/particle.png')
     }
+
+
+    -- Quads we will generate for all of our textures; Quads allow us
+    -- to show only part of a texture and not the entire thing
+    gFrames = {
+        ['paddles'] = GenerateQuadsPaddles(gTextures['main'])
+    }
+
     
     -- initialize our virtual resolution, which will be rendered within our
     -- actual window no matter its dimensions
