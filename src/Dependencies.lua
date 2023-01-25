@@ -19,6 +19,10 @@ require 'src/Paddle'
 
 require 'src/Ball'
 
+require 'src/Brick'
+
+require 'src/LevelMaker'
+
 -- a basic StateMachine class which will allow us to transition to and from
 -- game states smoothly and avoid monolithic code in one file
 require 'src/StateMachine'
