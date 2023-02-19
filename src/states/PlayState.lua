@@ -142,6 +142,13 @@ function PlayState:update(dt)
             })
         end
     end
+    --[[
+         update particle system --> basically if we don't
+        send the delta time the particle gets frozen 
+    ]]
+    for k, brick in pairs(self.bricks) do
+        brick:update(dt)
+    end
 
     if love.keyboard.wasPressed('escape') then
         love.event.quit()
@@ -151,12 +158,15 @@ end
 function PlayState:render()
     for k, brick in pairs(self.bricks) do
         brick:render()
+        brick:renderParticles()
     end
+
     self.paddle:render()
     self.ball:render()
 
     renderScore(self.score)
     renderHealth(self.health)
+
     if self.paused then
         love.graphics.setFont(gFonts['large'])
         love.graphics.printf("PAUSED", 0, VIRTUAL_HEIGHT / 2 - 16, VIRTUAL_WIDTH, 'center')
