@@ -78,7 +78,7 @@ function PlayState:update(dt)
             -- trigger the brick's hit function, which removes it from play
             brick:hit()
             self.score = self.score + (brick.tier * 200 + brick.color * 25)
-            if self:isVictory(self.bricks) then
+            if isVictory(self.bricks) then
                 gStateMachine:change('win', {
                     paddle = self.paddle,
                     health = self.health,
@@ -196,6 +196,11 @@ end
     funciono fue haciendo la funcion parte de la clase y volviendo
     el brick in ipairs a pairs porque aun moviendola al archivo 
     tenia el mismo puto problema, by the way algo interesante de lua.
+
+    Quiero dejar esto como una pequeña explicacion a lo que cambie previamente
+    encontre que la razon por la que siempre en el victory llegaba en
+    null, era simplemente porque no estabamos pasando el nivel en la 
+    condicion de serve cuando se pierde... lo se, lo se... demasiado dummy. 
 ]]
 function PlayState:isVictory(bricks)
     for i, brick in pairs(bricks) do
