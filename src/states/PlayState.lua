@@ -23,6 +23,7 @@ function PlayState:enter(params)
     self.health = params.health
     self.score = params.score
     self.ball = params.ball
+    self.currentBricks = #self.bricks
 
     self.ball.dx = math.random(-200, 200)
     self.ball.dy = math.random(-50, -60)
@@ -75,7 +76,7 @@ function PlayState:update(dt)
 
             -- trigger the brick's hit function, which removes it from play
             brick:hit()
-            self.score = self.score + 10
+            self.score = self.score + (brick.tier * 200 + brick.color * 25)
 
             --
             -- collision code for bricks
@@ -122,7 +123,6 @@ function PlayState:update(dt)
             break
         end
     end
-
     
 
     if self.ball.y + self.ball.height > VIRTUAL_HEIGHT then
@@ -154,6 +154,9 @@ function PlayState:render()
     end
     self.paddle:render()
     self.ball:render()
+
+    renderScore(self.score)
+    renderHealth(self.health)
     if self.paused then
         love.graphics.setFont(gFonts['large'])
         love.graphics.printf("PAUSED", 0, VIRTUAL_HEIGHT / 2 - 16, VIRTUAL_WIDTH, 'center')
