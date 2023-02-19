@@ -42,19 +42,20 @@ function LevelMaker.createMap(level)
     for y = 1, numRows do
         --[[
             Estas dos variables se acoplan a cada row y son las que determinan
-            entre si va aparecer ahi el brick(skipPattern) o que color van a usar.
-            si skipPattern es true, solo renderizara el brick si skipFlag es true
-            y si es false en la siguiente skip sera true y si lo renderizara.
-            
-            Por otro lado si alternPattern es true y alternFlag es true tambien,
-            va a colorear y poner el nivel con la opcion 1 solo si esta condicion 
-            se cumple.
+            entre si va aparecer ahi el brick(skipPattern) o que color van a 
+            usar(alternatePattern).
 
-            Si alternatePattern ya viene falso va setear el color y el nivel con
-            la opcion 2.
+            si skipPattern es true no se renderizara el brick si skipFlag es true
+            y si skipFlag es false lo renderiza y en la siguiente skip sera true
+            y de nuevo no lo renderizara.
+            
+            Por otro lado si alternPattern y alternFlag son true el brick se 
+            coloreara y poner el tier con la opcion 1 solo si esta condicion 
+            se cumple. Si alternatePattern ya viene falso va setear el color y el
+            nivel con la opcion 2.
 
             Y por ultimo el solid color y el solidTier se mostraran si el alternPattern
-            y el alternFlag son falsos.
+            es falso.
 
             Recuerda que el color y el diseño del brick depende de esas dos opciones 
             de estas se seleccionara el quad.
