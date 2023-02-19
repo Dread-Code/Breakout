@@ -117,7 +117,7 @@ function GenerateQuadsBricks(atlas)
 end
 
 function isVictory(bricks)
-    for i, brick in ipairs(bricks) do
+    for i, brick in pairs(bricks) do
         if brick.inPlay then
             return false
         end

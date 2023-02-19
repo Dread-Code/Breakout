@@ -77,7 +77,7 @@ function PlayState:update(dt)
             -- trigger the brick's hit function, which removes it from play
             brick:hit()
             self.score = self.score + (brick.tier * 200 + brick.color * 25)
-            if isVictory(self.bricks) then
+            if self:isVictory(self.bricks) then
                 gStateMachine:change('win', {
                     paddle = self.paddle,
                     health = self.health,
@@ -85,7 +85,6 @@ function PlayState:update(dt)
                     level = self.level
                 })
             end
-            --
             -- collision code for bricks
             --
             -- we check to see if the opposite side of our velocity is outside of the brick;
@@ -178,4 +177,26 @@ function PlayState:render()
         love.graphics.setFont(gFonts['large'])
         love.graphics.printf("PAUSED", 0, VIRTUAL_HEIGHT / 2 - 16, VIRTUAL_WIDTH, 'center')
     end
+end
+
+--[[
+    Tuve el error de que cuando cambiaba al victory
+    state al pasar por el isVictory en el util.lua
+    llegaba nil --> tengo el leve presentimiento que esto
+    sucede debido a que cambia el contexto de ejecucion al momento
+    de ser llamado en la condicion lo que causaria que el self
+    al que hace referencia ya no existiera. 
+
+    Tras varios minutos mirando la unica forma que me
+    funciono fue haciendo la funcion parte de la clase y volviendo
+    el brick in ipairs a pairs porque aun moviendola al archivo 
+    tenia el mismo puto problema, by the way algo interesante de lua.
+]]
+function PlayState:isVictory(bricks)
+    for i, brick in pairs(bricks) do
+        if brick.inPlay then
+            return false
+        end
+    end
+    return true
 end
