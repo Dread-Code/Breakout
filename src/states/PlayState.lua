@@ -23,7 +23,7 @@ function PlayState:enter(params)
     self.health = params.health
     self.score = params.score
     self.ball = params.ball
-    self.currentBricks = #self.bricks
+    self.level = params.level
 
     self.ball.dx = math.random(-200, 200)
     self.ball.dy = math.random(-50, -60)
@@ -78,7 +78,12 @@ function PlayState:update(dt)
             brick:hit()
             self.score = self.score + (brick.tier * 200 + brick.color * 25)
             if isVictory(self.bricks) then
-                print("ganamos")
+                gStateMachine:change('win', {
+                    paddle = self.paddle,
+                    health = self.health,
+                    score = self.score,
+                    level = self.level
+                })
             end
             --
             -- collision code for bricks
