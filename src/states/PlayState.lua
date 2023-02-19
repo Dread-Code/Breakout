@@ -77,7 +77,9 @@ function PlayState:update(dt)
             -- trigger the brick's hit function, which removes it from play
             brick:hit()
             self.score = self.score + (brick.tier * 200 + brick.color * 25)
-
+            if isVictory(self.bricks) then
+                print("ganamos")
+            end
             --
             -- collision code for bricks
             --

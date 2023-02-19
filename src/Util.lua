@@ -115,3 +115,12 @@ end
 function GenerateQuadsBricks(atlas)
     return table.slice(GenerateQuads(atlas, 32, 16), 1, 21)
 end
+
+function isVictory(bricks)
+    for i, brick in ipairs(bricks) do
+        if brick.inPlay then
+            return false
+        end
+    end
+    return true
+end
