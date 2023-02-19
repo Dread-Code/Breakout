@@ -40,3 +40,5 @@ require 'src/states/ServeState'
 require 'src/states/GameOverState'
 require 'src/states/WinState'
 require 'src/states/HighScoreState'
+require 'src/states/EnterHighScoreState'
+

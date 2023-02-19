@@ -6,6 +6,7 @@ function WinState:enter(params)
     self.health = params.health
     self.score = params.score
     self.level = params.level
+    self.highScores = params.highScores
 end
 
 function WinState:update()
@@ -17,7 +18,9 @@ function WinState:update()
             bricks = LevelMaker.createMap(self.level + 1),
             health = self.health,
             score = self.score,
-            level = self.level + 1
+            level = self.level + 1,
+            highScores = self.highScores
+
         })
     end
 end
