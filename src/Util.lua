@@ -116,6 +116,23 @@ function GenerateQuadsBricks(atlas)
     return table.slice(GenerateQuads(atlas, 32, 16), 1, 21)
 end
 
+function GenerateQuadsPowerUps(atlas)
+    local x = 0
+    local y = 192
+
+    local width = 16
+    local height = 16
+
+    local powerUps = {}
+
+    for i = 0, 9 do
+        powerUps[i] = love.graphics.newQuad(x + (i * width), y, width, height, atlas:getDimensions())    
+    end
+
+    return powerUps
+end
+
+
 function isVictory(bricks)
     for i, brick in pairs(bricks) do
         if brick.inPlay then

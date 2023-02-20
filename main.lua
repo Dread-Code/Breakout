@@ -65,7 +65,8 @@ function love.load()
     gFrames = {
         ['paddles'] = GenerateQuadsPaddles(gTextures['main']),
         ['balls'] = GenerateQuadsBalls(gTextures['main']),
-        ['bricks'] = GenerateQuadsBricks(gTextures['main']),
+        ['power_ups'] = GenerateQuadsPowerUps(gTextures['main']),
+        ['bricks'] = GenerateQuads(gTextures['main']),
         ['hearts'] = GenerateQuads(gTextures['hearts'], 10, 9),
         ['arrows'] = GenerateQuads(gTextures['arrows'], 24, 24),
     }
