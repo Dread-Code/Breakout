@@ -44,6 +44,10 @@ function Brick:init(x, y)
      self.y = y
      self.width = 32
      self.height = 16
+     self.powerUp = PowerUp({
+        brick = self,
+        power = 'hola'
+     })
      
      -- used to determine whether this brick should be rendered
      self.inPlay = true

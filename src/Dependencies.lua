@@ -21,6 +21,8 @@ require 'src/Ball'
 
 require 'src/Brick'
 
+require 'src/PowerUp'
+
 require 'src/LevelMaker'
 
 -- a basic StateMachine class which will allow us to transition to and from

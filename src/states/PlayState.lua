@@ -11,7 +11,7 @@
     simply display "Breakout" in large text, as well as a message to press
     Enter to begin.
 ]]
-
+    
 -- the "__includes" bit here means we're going to inherit all of the methods
 -- that BaseState has, so it will have empty versions of all StateMachine methods
 -- even if we don't override them ourselves; handy to avoid superfluous code!
@@ -73,10 +73,22 @@ function PlayState:update(dt)
     for k, brick in pairs(self.bricks) do
 
         -- only check collision if we're in play
+        brick.powerUp:update(dt)
+
+        if brick.powerUp.inPlay and brick.powerUp:collides(self.paddle) then
+            brick.powerUp.inPlay = false
+            brick.powerUp.dy = 0
+            for k, brick in pairs(self.bricks) do
+                if brick.color == 3 then
+                    brick:hit()
+                end
+            end
+        end
         if brick.inPlay and self.ball:collides(brick) then
 
             -- trigger the brick's hit function, which removes it from play
             brick:hit()
+            brick.powerUp.dy = 20
             self.score = self.score + (brick.tier * 200 + brick.color * 25)
             if isVictory(self.bricks) then
                 gStateMachine:change('win', {
@@ -168,6 +180,7 @@ end
 
 function PlayState:render()
     for k, brick in pairs(self.bricks) do
+        brick.powerUp:render()
         brick:render()
         brick:renderParticles()
     end
